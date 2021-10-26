@@ -9,10 +9,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace MolkApp
 {
@@ -41,7 +43,7 @@ namespace MolkApp
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = (CheckBox)sender;
+            System.Windows.Controls.CheckBox checkBox = (System.Windows.Controls.CheckBox)sender;
             switch (checkBox.Name)
             {
                 case "_f":
@@ -139,7 +141,7 @@ namespace MolkApp
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = (CheckBox)sender;
+            System.Windows.Controls.CheckBox checkBox = (System.Windows.Controls.CheckBox)sender;
             switch (checkBox.Name)
             {
                 case "_f":
@@ -240,21 +242,37 @@ namespace MolkApp
             FileAttributes attr = File.GetAttributes(path);
 
             if (attr.HasFlag(FileAttributes.Directory))
-                MessageBox.Show("Its a directory");
+                System.Windows.MessageBox.Show("Its a directory");
             else
-                MessageBox.Show("Its a file");
+                System.Windows.MessageBox.Show("Its a file");
         }
 
         private void Destination_ZIP_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                DestinationZIPTextBox.Text = openFileDialog.FileName;
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                DestinationZIPTextBox.Text = folderBrowserDialog.SelectedPath.ToString();
+            }
+
+            
         }
 
-        private void Destination_Content_Click(object sender, RoutedEventArgs e)
+        private void Destination_Content_Folder_Click(object sender, RoutedEventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                DestinationContentTextBox.Text = folderBrowserDialog.SelectedPath.ToString();
+            }
+        }
+
+        private void Destination_Content_File_Click(object sender, RoutedEventArgs e)
         {
 
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                DestinationContentTextBox.Text = openFileDialog.FileName;
         }
     }
 }
