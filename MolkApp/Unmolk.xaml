@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Title="Unmolk" Height="450" Width="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="434" Width="800" 
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="434" Width="800" 
                    AllowDrop="True" Drop="Grid_Drop"/>
         <Label HorizontalAlignment="Left" Margin="10,10,0,0" Content="Choose destination (drop the folder)" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="624" Height="22" Name="filePath"/>
-        <Button Content="Unmolk" HorizontalAlignment="Center" VerticalAlignment="Center" Height="22" Width="151" Click="Button_Click"/>
+        <Button Content="Unmolk" HorizontalAlignment="Center" VerticalAlignment="Center" Height="22" Width="151" Click="Unmolk_Click"/>
+        <Button Content="Go back" HorizontalAlignment="Left" Margin="707,10,0,0" VerticalAlignment="Top" Width="75" Click="Close_Button"/>
 
     </Grid>
 </Window>
