@@ -34,7 +34,7 @@ namespace MolkApp
             filePath.Text = files[0];
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Unmolk_Click(object sender, RoutedEventArgs e)
         {
             Process process = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
@@ -52,7 +52,13 @@ namespace MolkApp
                     sw.WriteLine($"unmolk \"{MainWindow.files[0]}\" -d \"{files[0]}\"");
                 }
             }
-            //Process.Start("cmd", $"/C cd \"C:\\Users\\Dator 1\\Desktop\\molk\" unmolk {MainWindow.files[0]} -d {files[0]}");
+        }
+
+        private void Close_Button(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
         }
     }
 }
