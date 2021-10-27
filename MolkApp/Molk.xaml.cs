@@ -294,12 +294,7 @@ namespace MolkApp
 
         private void Unmolk_Click(object sender, RoutedEventArgs e)
         {
-            Process process = new Process();
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = "cmd.exe";
-            info.RedirectStandardInput = true;
-            info.UseShellExecute = false;
-            process.StartInfo = info;
+            Process process = StartCmd();
             process.Start();
 
             using (StreamWriter sw = process.StandardInput)
@@ -317,6 +312,16 @@ namespace MolkApp
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
+        }
+        private Process StartCmd()
+        {
+            Process process = new Process();
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "cmd.exe";
+            info.RedirectStandardInput = true;
+            info.UseShellExecute = false;
+            process.StartInfo = info;
+            return process;
         }
     }
 }
