@@ -105,8 +105,27 @@
             </TabItem>
             <TabItem Header="Unmolk" Name="UnmolkTab">
                 <StackPanel>
-                    <Label HorizontalAlignment="Left" Margin="10,10,0,0" Content="Choose destination (drop the folder)" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="624" Height="22" x:Name="filePath"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label HorizontalAlignment="Left" Margin="10,10,0,0" Content="Choose destination (drop the folder)" VerticalAlignment="Top"/>
+                        <TextBox Margin="10,0,0,0" VerticalAlignment="Top" Height="22" x:Name="filePath"
+                             Grid.Column="0" Grid.Row="1" IsReadOnly="True"/>
+                        <Button VerticalAlignment="Stretch" Click="Destination_ZIP_Click" Height="Auto" Grid.Column="1" 
+                                Grid.ColumnSpan="2" Grid.Row="1"  Width="Auto" Margin="0">
+                            <StackPanel Orientation="Horizontal" Height="18" Width="219">
+                                <Image Source="C:\Users\Yumey\Downloads\folder.png" Height="20" />
+                                <TextBlock><Run Text="Choose ZIP destination"/></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
                     <Button Content="Unmolk" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Height="22" Width="151" Click="Unmolk_Click"/>
                 </StackPanel>
             </TabItem>
