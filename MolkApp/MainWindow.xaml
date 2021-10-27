@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MolkApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Molk" Height="450" Width="800">
     <Grid>
         <!--<Button VerticalAlignment="Top" Click="Button_Click" Width="100" Height="100">Press me</Button>
         <TextBox VerticalAlignment="Center" Name="Input"></TextBox>

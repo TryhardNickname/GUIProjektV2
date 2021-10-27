@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,13 +24,26 @@ namespace MolkApp
     /// </summary>
     public partial class Molk : Window
     {
-        public Molk(string[] file)
+        private string[] files;
+        private string[] pathToTarget;
+        private Dictionary<string, bool> arguments;
+
+        public Molk(string[] file, bool MolkorUnmolk)
         {
             pathToTarget = file;
             arguments = new Dictionary<string, bool>();
 
+
             InitializeComponent();
             DestinationContentTextBox.Text = file[0];
+            if (MolkorUnmolk)
+            {
+                MolkTab.IsSelected = true;
+            }
+            else
+            {
+                UnmolkTab.IsSelected = true;
+            }
 
             //foreach (string element in pathToFile)
             //{
@@ -37,9 +51,7 @@ namespace MolkApp
             //}
         }
 
-
-        private string[] pathToTarget;
-        private Dictionary<string, bool> arguments;
+        
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
@@ -273,6 +285,43 @@ namespace MolkApp
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 DestinationContentTextBox.Text = openFileDialog.FileName;
+        }
+        private void Grid_Drop(object sender, System.Windows.DragEventArgs e)
+        {
+            files = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
+            filePath.Text = files[0];
+        }
+
+        private void Unmolk_Click(object sender, RoutedEventArgs e)
+        {
+            Process process = StartCmd();
+            process.Start();
+
+            using (StreamWriter sw = process.StandardInput)
+            {
+                if (sw.BaseStream.CanWrite)
+                {
+                    sw.WriteLine("cd \"C:\\Users\\Dator 1\\Desktop\\molk\"");
+                    sw.WriteLine($"unmolk \"{MainWindow.files[0]}\" -d \"{files[0]}\"");
+                }
+            }
+        }
+
+        private void Close_Button(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
+        private Process StartCmd()
+        {
+            Process process = new Process();
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "cmd.exe";
+            info.RedirectStandardInput = true;
+            info.UseShellExecute = false;
+            process.StartInfo = info;
+            return process;
         }
     }
 }

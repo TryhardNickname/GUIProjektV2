@@ -34,7 +34,7 @@ namespace MolkApp
 
             files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-            Molk molk = new Molk(files);
+            Molk molk = new Molk(files, true);
             molk.Show();
             Close();
         }
@@ -45,8 +45,8 @@ namespace MolkApp
 
             files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-            Unmolk unMolk = new Unmolk();
-            unMolk.Show();
+            Molk molk = new Molk(files, false);
+            molk.Show();
             Close();
         }
 

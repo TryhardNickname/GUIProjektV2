@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MolkApp"
         mc:Ignorable="d"
-        Title="Molk" Height="450" Width="800">
+        Title="Molk" Height="450" Width="800"
+        AllowDrop="True" Drop="Grid_Drop">
     <Grid>
         <TabControl>
-                <TabItem Header="Molk">
+            <TabItem Header="Molk" Name="MolkTab">
                 <StackPanel>
                     <Image Source="C:\Users\Yumey\source\repos\MolkApp\MolkApp\Assets\molk-logo-purple.png" Height="40" Margin="0,10,0,10"></Image>
                     <Grid>
@@ -102,7 +103,13 @@
                     </StackPanel>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Unmolk"></TabItem>
+            <TabItem Header="Unmolk" Name="UnmolkTab">
+                <StackPanel>
+                    <Label HorizontalAlignment="Left" Margin="10,10,0,0" Content="Choose destination (drop the folder)" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="624" Height="22" x:Name="filePath"/>
+                    <Button Content="Unmolk" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Height="22" Width="151" Click="Unmolk_Click"/>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
