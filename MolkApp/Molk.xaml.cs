@@ -264,10 +264,16 @@ namespace MolkApp
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                DestinationZIPTextBox.Text = folderBrowserDialog.SelectedPath.ToString();
+                if (MolkTab.IsSelected)
+                {
+                    DestinationZIPTextBox.Text = folderBrowserDialog.SelectedPath.ToString();
+                }
+                else
+                {
+                    filePath.Text = folderBrowserDialog.SelectedPath.ToString();
+                }
             }
 
-            
         }
 
         private void Destination_Content_Folder_Click(object sender, RoutedEventArgs e)
