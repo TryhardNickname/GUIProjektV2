@@ -25,13 +25,25 @@ namespace MolkApp
     public partial class Molk : Window
     {
         private string[] files;
-        public Molk(string[] file)
+        private string[] pathToTarget;
+        private Dictionary<string, bool> arguments;
+
+        public Molk(string[] file, bool MolkorUnmolk)
         {
             pathToTarget = file;
             arguments = new Dictionary<string, bool>();
 
+
             InitializeComponent();
             DestinationContentTextBox.Text = file[0];
+            if (MolkorUnmolk)
+            {
+                MolkTab.IsSelected = true;
+            }
+            else
+            {
+                UnmolkTab.IsSelected = true;
+            }
 
             //foreach (string element in pathToFile)
             //{
@@ -39,9 +51,7 @@ namespace MolkApp
             //}
         }
 
-
-        private string[] pathToTarget;
-        private Dictionary<string, bool> arguments;
+        
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
