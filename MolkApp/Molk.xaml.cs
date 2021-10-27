@@ -337,5 +337,18 @@ namespace MolkApp
         {
             e.Handled = true;
         }
+
+        private void AdvancedShow_Click(object sender, RoutedEventArgs e)
+        {
+            if (AdvancedStackPanel.Visibility == Visibility.Visible)
+            {
+                AdvancedStackPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                AdvancedStackPanel.Visibility = Visibility.Visible;
+            }
+            
+        }
     }
 }
