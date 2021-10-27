@@ -115,7 +115,7 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Label HorizontalAlignment="Left" Margin="10,10,0,0" Content="Choose destination (drop the folder)" VerticalAlignment="Top"/>
+                        <Label HorizontalAlignment="Left" Margin="10,10,0,0" Content="Choose destination" VerticalAlignment="Top"/>
                         <TextBox Margin="10,0,0,0" VerticalAlignment="Top" Height="22" x:Name="filePath"
                              Grid.Column="0" Grid.Row="1" IsReadOnly="True"/>
                         <Button VerticalAlignment="Stretch" Click="Destination_ZIP_Click" Height="Auto" Grid.Column="1" 
