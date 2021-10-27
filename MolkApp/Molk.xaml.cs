@@ -251,16 +251,6 @@ namespace MolkApp
             }
         }
 
-        private void checkIfDirOrFile(string path)
-        {
-            FileAttributes attr = File.GetAttributes(path);
-
-            if (attr.HasFlag(FileAttributes.Directory))
-                System.Windows.MessageBox.Show("Its a directory");
-            else
-                System.Windows.MessageBox.Show("Its a file");
-        }
-
         private void Destination_ZIP_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -349,6 +339,43 @@ namespace MolkApp
                 AdvancedStackPanel.Visibility = Visibility.Visible;
             }
             
+        }
+
+        private void Molk_Click(object sender, RoutedEventArgs e)
+        {
+            //Process process = new Process();
+            //ProcessStartInfo info = new ProcessStartInfo();
+            //info.FileName = "cmd.exe";
+            //info.RedirectStandardInput = true;
+            //info.UseShellExecute = false;
+            //process.StartInfo = info;
+            //process.Start();
+
+            //using (StreamWriter sw = process.StandardInput)
+            //{
+            //    if (sw.BaseStream.CanWrite)
+            //    {
+            //        sw.WriteLine($"molk /c \"{DestinationZIPTextBox.Text}\" \"{DestinationContentTextBox.Text}\" > C:/Users/Yumey/Desktop/test.txt");
+            //    }
+            //}
+            //Debug.WriteLine(DestinationZIPTextBox.Text);
+            //Debug.WriteLine(DestinationContentTextBox.Text);
+
+            string two = $" /c {DestinationZIPTextBox.Text}/molkfolder.molk {DestinationContentTextBox.Text} > C:/Users/Yumey/Desktop/test.txt";
+
+;
+            Process cmd = Process.Start("cmd.exe", "/C " + two);
+            cmd.Close();
+        }
+
+        private bool checkIfDirOrFile(string path)
+        {
+            FileAttributes attr = File.GetAttributes(path);
+
+            if (attr.HasFlag(FileAttributes.Directory))
+                return true;
+            else
+                return false;
         }
     }
 }

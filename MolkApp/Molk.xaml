@@ -105,7 +105,7 @@
                             </StackPanel>
                         </Grid>
                     </StackPanel>
-                    <Button Width="120" Background="White" BorderThickness="0" VerticalAlignment="Bottom" Grid.Row="2" Margin="0,0,0,10">
+                    <Button Width="120" Background="White" BorderThickness="0" VerticalAlignment="Bottom" Grid.Row="2" Margin="0,0,0,10" Click="Molk_Click">
                         <Image Source="Assets\molk-logo-purple.png" Height="40" ></Image>
                     </Button>
                 </Grid>
