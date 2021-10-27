@@ -11,7 +11,6 @@
         <TabControl>
             <TabItem Header="Molk" Name="MolkTab">
                 <StackPanel>
-                    <Image Source="C:\Users\Yumey\source\repos\MolkApp\MolkApp\Assets\molk-logo-purple.png" Height="40" Margin="0,10,0,10"></Image>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -23,31 +22,29 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <TextBox Name="DestinationContentTextBox" Grid.Column="0" Grid.Row="0" Height="24" VerticalAlignment="Top" IsReadOnly="True"></TextBox>
-                        <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Click="Destination_Content_File_Click">
+                        <TextBox Name="DestinationContentTextBox" AllowDrop="True" Drop="DestinationContentTextBox_Drop" PreviewDragOver="ContentTextBox_PreviewDragOver" Grid.Column="0" Grid.Row="0" Height="24" VerticalAlignment="Top" IsReadOnly="True"></TextBox>
+                        <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Height="24"  Click="Destination_Content_File_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="C:\Users\Yumey\Downloads\folder.png" Height="20" />
+
                                 <TextBlock>Choose file to ZIP</TextBlock>
                             </StackPanel>
                         </Button>
 
-                        <Button Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Click="Destination_Content_Folder_Click">
+                        <Button Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Height="24" Click="Destination_Content_Folder_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="C:\Users\Yumey\Downloads\folder.png" Height="20" />
+
                                 <TextBlock>Choose folder to ZIP</TextBlock>
                             </StackPanel>
                         </Button>
 
-                        <TextBox Name="DestinationZIPTextBox" Grid.Column="0" Margin="0,10,0,0" Grid.Row="1" Height="24" VerticalAlignment="Top" IsReadOnly="True"></TextBox>
-                        <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top" Margin="0,10,0,0" Click="Destination_ZIP_Click">
+                        <TextBox Name="DestinationZIPTextBox" AllowDrop="True" Drop="DestinationZIPTextBox_Drop" PreviewDragOver="ContentTextBox_PreviewDragOver" Grid.Column="0" Margin="0,10,0,0" Grid.Row="1" Height="24" VerticalAlignment="Top" IsReadOnly="True"></TextBox>
+                        <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Height="24"  VerticalAlignment="Top" Margin="0,10,0,0" Click="Destination_ZIP_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="C:\Users\Yumey\Downloads\folder.png" Height="20" />
+
                                 <TextBlock>Choose ZIP destination</TextBlock>
                             </StackPanel>
                         </Button>
                     </Grid>
-
-
 
                     <StackPanel Orientation="Vertical" Margin="0,10,0,0">
                         <TabControl>
@@ -101,6 +98,9 @@
                             </TabItem>
                         </TabControl>
                     </StackPanel>
+                    <Button Width="120" Background="White" BorderThickness="0" VerticalAlignment="Bottom" Margin="0,10,0,10">
+                        <Image Source="Assets\molk-logo-purple.png" Height="40" ></Image>
+                    </Button>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Unmolk" Name="UnmolkTab">

@@ -28,6 +28,7 @@ namespace MolkApp
         private string[] pathToTarget;
         private Dictionary<string, bool> arguments;
 
+        private string[] tempfiles;
         public Molk(string[] file, bool MolkorUnmolk)
         {
             pathToTarget = file;
@@ -36,6 +37,7 @@ namespace MolkApp
 
             InitializeComponent();
             DestinationContentTextBox.Text = file[0];
+
             if (MolkorUnmolk)
             {
                 MolkTab.IsSelected = true;
@@ -317,6 +319,23 @@ namespace MolkApp
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
+        }
+
+        private void DestinationContentTextBox_Drop(object sender, System.Windows.DragEventArgs e)
+        {
+            tempfiles = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
+            DestinationContentTextBox.Text = tempfiles[0];
+        }
+
+        private void DestinationZIPTextBox_Drop(object sender, System.Windows.DragEventArgs e)
+        {
+            tempfiles = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
+            DestinationZIPTextBox.Text = tempfiles[0];
+        }
+
+        private void ContentTextBox_PreviewDragOver(object sender, System.Windows.DragEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
