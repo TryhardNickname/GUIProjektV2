@@ -27,6 +27,8 @@ namespace MolkApp
         private string[] files;
         private string[] pathToTarget;
         private Dictionary<string, bool> arguments;
+        private string[] tempfiles;
+        private string ZipDestination;
 
         public Molk(string[] file, bool MolkorUnmolk)
         {
@@ -36,6 +38,7 @@ namespace MolkApp
 
             InitializeComponent();
             DestinationContentTextBox.Text = file[0];
+
             if (MolkorUnmolk)
             {
                 MolkTab.IsSelected = true;
@@ -44,6 +47,8 @@ namespace MolkApp
             {
                 UnmolkTab.IsSelected = true;
             }
+
+            ZipDestination = "\\" + DestinationZIPTextBox.Text;
 
             //foreach (string element in pathToFile)
             //{
@@ -249,16 +254,6 @@ namespace MolkApp
             }
         }
 
-        private void checkIfDirOrFile(string path)
-        {
-            FileAttributes attr = File.GetAttributes(path);
-
-            if (attr.HasFlag(FileAttributes.Directory))
-                System.Windows.MessageBox.Show("Its a directory");
-            else
-                System.Windows.MessageBox.Show("Its a file");
-        }
-
         private void Destination_ZIP_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -266,11 +261,11 @@ namespace MolkApp
             {
                 if (MolkTab.IsSelected)
                 {
-                    DestinationZIPTextBox.Text = folderBrowserDialog.SelectedPath.ToString();
+                    DestinationZIPTextBox.Text = folderBrowserDialog.SelectedPath.ToString() + ZipDestination;
                 }
                 else
                 {
-                    filePath.Text = folderBrowserDialog.SelectedPath.ToString();
+                    filePath.Text = folderBrowserDialog.SelectedPath.ToString() + ZipDestination;
                 }
             }
 
@@ -318,6 +313,65 @@ namespace MolkApp
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
+        }
+
+        private void DestinationContentTextBox_Drop(object sender, System.Windows.DragEventArgs e)
+        {
+            tempfiles = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
+            DestinationContentTextBox.Text = tempfiles[0];
+        }
+
+        private void DestinationZIPTextBox_Drop(object sender, System.Windows.DragEventArgs e)
+        {
+            tempfiles = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
+            DestinationZIPTextBox.Text = tempfiles[0] + ZipDestination;
+        }
+
+        private void ContentTextBox_PreviewDragOver(object sender, System.Windows.DragEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void AdvancedShow_Click(object sender, RoutedEventArgs e)
+        {
+            if (AdvancedStackPanel.Visibility == Visibility.Visible)
+            {
+                AdvancedStackPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                AdvancedStackPanel.Visibility = Visibility.Visible;
+            }
+            
+        }
+
+        private void Molk_Click(object sender, RoutedEventArgs e)
+        {
+            Process process = new Process();
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "cmd.exe";
+            info.RedirectStandardInput = true;
+            info.UseShellExecute = false;
+            info.Arguments = $"/c molk {DestinationZIPTextBox.Text} {DestinationContentTextBox.Text} > C:/Users/Yumey/Desktop/test.txt";
+
+            process.StartInfo = info;
+            process.Start();
+
+            Debug.WriteLine(info.Arguments);
+
+            //string two = $" /c {DestinationZIPTextBox.Text}/molkfolder.molk {DestinationContentTextBox.Text} > C:/Users/Yumey/Desktop/test.txt";
+            //Process cmd = Process.Start("cmd.exe", "/C " + two);
+            //cmd.Close();
+        }
+
+        private bool checkIfDirOrFile(string path)
+        {
+            FileAttributes attr = File.GetAttributes(path);
+
+            if (attr.HasFlag(FileAttributes.Directory))
+                return true;
+            else
+                return false;
         }
         private Process StartCmd()
         {

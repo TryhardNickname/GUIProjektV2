@@ -10,98 +10,102 @@
     <Grid>
         <TabControl>
             <TabItem Header="Molk" Name="MolkTab">
-                <StackPanel>
-                    <Image Source="C:\Users\Yumey\source\repos\MolkApp\MolkApp\Assets\molk-logo-purple.png" Height="40" Margin="0,10,0,10"></Image>
-                    <Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <TextBox Name="DestinationContentTextBox" Grid.Column="0" Grid.Row="0" Height="24" VerticalAlignment="Top" IsReadOnly="True"></TextBox>
-                        <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Click="Destination_Content_File_Click">
+                        <TextBox Name="DestinationContentTextBox" AllowDrop="True" Drop="DestinationContentTextBox_Drop" PreviewDragOver="ContentTextBox_PreviewDragOver" Grid.Column="0" Grid.Row="0" Height="24" VerticalAlignment="Top"></TextBox>
+                        <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Height="24"  Click="Destination_Content_File_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="C:\Users\Yumey\Downloads\folder.png" Height="20" />
                                 <TextBlock>Choose file to ZIP</TextBlock>
                             </StackPanel>
                         </Button>
 
-                        <Button Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Click="Destination_Content_Folder_Click">
+                        <Button Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Height="24" Click="Destination_Content_Folder_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="C:\Users\Yumey\Downloads\folder.png" Height="20" />
                                 <TextBlock>Choose folder to ZIP</TextBlock>
                             </StackPanel>
                         </Button>
 
-                        <TextBox Name="DestinationZIPTextBox" Grid.Column="0" Margin="0,10,0,0" Grid.Row="1" Height="24" VerticalAlignment="Top" IsReadOnly="True"></TextBox>
-                        <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top" Margin="0,10,0,0" Click="Destination_ZIP_Click">
+                        <TextBox Name="DestinationZIPTextBox" AllowDrop="True" Drop="DestinationZIPTextBox_Drop" PreviewDragOver="ContentTextBox_PreviewDragOver" Grid.Column="0" Margin="0,10,0,-5" Grid.Row="1" Height="24" VerticalAlignment="Top">MolkFolder.molk</TextBox>
+                        <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Height="24"  VerticalAlignment="Top" Margin="0,10,0,-5" Click="Destination_ZIP_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="C:\Users\Yumey\Downloads\folder.png" Height="20" />
                                 <TextBlock>Choose ZIP destination</TextBlock>
                             </StackPanel>
                         </Button>
                     </Grid>
 
+                    <StackPanel Orientation="Vertical" Grid.Row="1">
+                        <Button Width="120" Height="20" Background="White" BorderThickness="1" VerticalAlignment="Bottom" Margin="0,10,0,10" Click="AdvancedShow_Click" >Advanced options</Button>
+                        <Grid Name="AdvancedStackPanel"  Visibility="Collapsed" >
+                            <Grid.Resources>
+                                <Style TargetType="{x:Type CheckBox}">
+                                    <Setter Property="Margin" Value="0,5,0,0"/>
+                                </Style>
+                            </Grid.Resources>
 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-                    <StackPanel Orientation="Vertical" Margin="0,10,0,0">
-                        <TabControl>
-                            <TabItem Header="Simple">
-                                <Label>hlelo</Label>
-                            </TabItem>
-                            <TabItem Header="Advanced">
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel.Resources>
-                                        <Style TargetType="{x:Type CheckBox}">
-                                            <Setter Property="Margin" Value="0,5,0,0"/>
-                                        </Style>
-                                    </StackPanel.Resources>
-                                    <StackPanel Orientation="Vertical">
-                                        <CheckBox Name="_f" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-f freshen: only changed files</CheckBox>
-                                        <CheckBox Name="_d" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-d delete entries in zipfile</CheckBox>
-                                        <CheckBox Name="_r" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-r recurse into directories</CheckBox>
-                                        <CheckBox Name="_0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-0 store only</CheckBox>
-                                        <CheckBox Name="_1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-1 compress faster</CheckBox>
-                                        <CheckBox Name="_q" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-q quiet operation</CheckBox>
-                                        <CheckBox Name="_c" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-c add one-line commentse</CheckBox>
-                                        <CheckBox Name="_at" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-@ read names from stdin</CheckBox>
-                                        <CheckBox Name="_x" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-x exclude the following names</CheckBox>
-                                        <CheckBox Name="_F" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-F fix zipfile (-FF try harder)</CheckBox>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <CheckBox Name="_A" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-A adjust self-extracting exe</CheckBox>
-                                        <CheckBox Name="_T" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-T test zipfile integrity</CheckBox>
-                                        <CheckBox Name="_exc" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-! use privileges (if granted) to obtain all aspects of WinNT security</CheckBox>
-                                        <CheckBox Name="_R" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-R PKZIP recursion</CheckBox>
-                                        <CheckBox Name="_dollar" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-$ include volume label</CheckBox>
-                                        <CheckBox Name="_e" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-e encrypt</CheckBox>
-                                        <CheckBox Name="_u" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-u update: only changed or new files</CheckBox>
-                                        <CheckBox Name="_m" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-m move into zipfile (delete files)</CheckBox>
-                                        <CheckBox Name="_j" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-j junk (don't record) directory names</CheckBox>
-                                        <CheckBox Name="_l" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-l convert LF to CR LF (-ll CR LF to LF)</CheckBox>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <CheckBox Name="_9" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-9 compress better</CheckBox>
-                                        <CheckBox Name="_v" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-v verbose operation/print version info</CheckBox>
-                                        <CheckBox Name="_z" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-z add zipfile comment</CheckBox>
-                                        <CheckBox Name="_o" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-o make zipfile as old as latest entry</CheckBox>
-                                        <CheckBox Name="_i" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-i include only the following names</CheckBox>
-                                        <CheckBox Name="_D" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-D do not add directory entries</CheckBox>
-                                        <CheckBox Name="_J" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-J junk zipfile prefix (unzipsfx)</CheckBox>
-                                        <CheckBox Name="_X" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-X eXclude eXtra file attributes</CheckBox>
-                                        <CheckBox Name="_S" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-S include system and hidden files</CheckBox>
-                                        <CheckBox Name="_n" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-n don't compress these suffixes</CheckBox>
-                                    </StackPanel>
-                                </StackPanel>
-                            </TabItem>
-                        </TabControl>
+                            <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Center">
+                                <CheckBox Name="_f" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-f freshen: only changed files</CheckBox>
+                                <CheckBox Name="_d" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-d delete entries in zipfile</CheckBox>
+                                <CheckBox Name="_r" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-r recurse into directories</CheckBox>
+                                <CheckBox Name="_0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-0 store only</CheckBox>
+                                <CheckBox Name="_1" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-1 compress faster</CheckBox>
+                                <CheckBox Name="_q" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-q quiet operation</CheckBox>
+                                <CheckBox Name="_c" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-c add one-line commentse</CheckBox>
+                                <CheckBox Name="_at" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-@ read names from stdin</CheckBox>
+                                <CheckBox Name="_x" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-x exclude the following names</CheckBox>
+                                <CheckBox Name="_F" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-F fix zipfile (-FF try harder)</CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center">
+                                <CheckBox Name="_A" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-A adjust self-extracting exe</CheckBox>
+                                <CheckBox Name="_T" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-T test zipfile integrity</CheckBox>
+                                <CheckBox Name="_exc" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-! use privileges to obtain all aspects of WinNT security</CheckBox>
+                                <CheckBox Name="_R" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-R PKZIP recursion</CheckBox>
+                                <CheckBox Name="_dollar" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-$ include volume label</CheckBox>
+                                <CheckBox Name="_e" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-e encrypt</CheckBox>
+                                <CheckBox Name="_u" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-u update: only changed or new files</CheckBox>
+                                <CheckBox Name="_m" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-m move into zipfile (delete files)</CheckBox>
+                                <CheckBox Name="_j" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-j junk (don't record) directory names</CheckBox>
+                                <CheckBox Name="_l" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-l convert LF to CR LF (-ll CR LF to LF)</CheckBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="2" HorizontalAlignment="Center">
+                                <CheckBox Name="_9" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-9 compress better</CheckBox>
+                                <CheckBox Name="_v" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-v verbose operation/print version info</CheckBox>
+                                <CheckBox Name="_z" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-z add zipfile comment</CheckBox>
+                                <CheckBox Name="_o" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-o make zipfile as old as latest entry</CheckBox>
+                                <CheckBox Name="_i" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-i include only the following names</CheckBox>
+                                <CheckBox Name="_D" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-D do not add directory entries</CheckBox>
+                                <CheckBox Name="_J" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-J junk zipfile prefix (unzipsfx)</CheckBox>
+                                <CheckBox Name="_X" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-X eXclude eXtra file attributes</CheckBox>
+                                <CheckBox Name="_S" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-S include system and hidden files</CheckBox>
+                                <CheckBox Name="_n" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">-n don't compress these suffixes</CheckBox>
+                            </StackPanel>
+                        </Grid>
                     </StackPanel>
-                </StackPanel>
+                    <Button Width="120" Background="White" BorderThickness="0" VerticalAlignment="Bottom" Grid.Row="2" Margin="0,0,0,10" Click="Molk_Click">
+                        <Image Source="Assets\molk-logo-purple.png" Height="40" ></Image>
+                    </Button>
+                </Grid>
             </TabItem>
             <TabItem Header="Unmolk" Name="UnmolkTab">
                 <StackPanel>
