@@ -27,8 +27,9 @@ namespace MolkApp
         private string[] files;
         private string[] pathToTarget;
         private Dictionary<string, bool> arguments;
-
         private string[] tempfiles;
+        private string ZipDestination;
+
         public Molk(string[] file, bool MolkorUnmolk)
         {
             pathToTarget = file;
@@ -46,6 +47,8 @@ namespace MolkApp
             {
                 UnmolkTab.IsSelected = true;
             }
+
+            ZipDestination = "\\" + DestinationZIPTextBox.Text;
 
             //foreach (string element in pathToFile)
             //{
@@ -256,10 +259,8 @@ namespace MolkApp
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                DestinationZIPTextBox.Text = folderBrowserDialog.SelectedPath.ToString();
+                DestinationZIPTextBox.Text = folderBrowserDialog.SelectedPath.ToString() + ZipDestination;
             }
-
-            
         }
 
         private void Destination_Content_Folder_Click(object sender, RoutedEventArgs e)
@@ -320,7 +321,7 @@ namespace MolkApp
         private void DestinationZIPTextBox_Drop(object sender, System.Windows.DragEventArgs e)
         {
             tempfiles = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
-            DestinationZIPTextBox.Text = tempfiles[0];
+            DestinationZIPTextBox.Text = tempfiles[0] + ZipDestination;
         }
 
         private void ContentTextBox_PreviewDragOver(object sender, System.Windows.DragEventArgs e)
@@ -343,29 +344,21 @@ namespace MolkApp
 
         private void Molk_Click(object sender, RoutedEventArgs e)
         {
-            //Process process = new Process();
-            //ProcessStartInfo info = new ProcessStartInfo();
-            //info.FileName = "cmd.exe";
-            //info.RedirectStandardInput = true;
-            //info.UseShellExecute = false;
-            //process.StartInfo = info;
-            //process.Start();
+            Process process = new Process();
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.FileName = "cmd.exe";
+            info.RedirectStandardInput = true;
+            info.UseShellExecute = false;
+            info.Arguments = $"/c molk {DestinationZIPTextBox.Text} {DestinationContentTextBox.Text} > C:/Users/Yumey/Desktop/test.txt";
 
-            //using (StreamWriter sw = process.StandardInput)
-            //{
-            //    if (sw.BaseStream.CanWrite)
-            //    {
-            //        sw.WriteLine($"molk /c \"{DestinationZIPTextBox.Text}\" \"{DestinationContentTextBox.Text}\" > C:/Users/Yumey/Desktop/test.txt");
-            //    }
-            //}
-            //Debug.WriteLine(DestinationZIPTextBox.Text);
-            //Debug.WriteLine(DestinationContentTextBox.Text);
+            process.StartInfo = info;
+            process.Start();
 
-            string two = $" /c {DestinationZIPTextBox.Text}/molkfolder.molk {DestinationContentTextBox.Text} > C:/Users/Yumey/Desktop/test.txt";
+            Debug.WriteLine(info.Arguments);
 
-;
-            Process cmd = Process.Start("cmd.exe", "/C " + two);
-            cmd.Close();
+            //string two = $" /c {DestinationZIPTextBox.Text}/molkfolder.molk {DestinationContentTextBox.Text} > C:/Users/Yumey/Desktop/test.txt";
+            //Process cmd = Process.Start("cmd.exe", "/C " + two);
+            //cmd.Close();
         }
 
         private bool checkIfDirOrFile(string path)
