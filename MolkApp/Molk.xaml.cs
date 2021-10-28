@@ -302,7 +302,6 @@ namespace MolkApp
             {
                 if (sw.BaseStream.CanWrite)
                 {
-                    sw.WriteLine("cd \"C:\\Users\\Dator 1\\Desktop\\molk\"");
                     sw.WriteLine($"unmolk \"{MainWindow.files[0]}\" -d \"{files[0]}\"");
                 }
             }
