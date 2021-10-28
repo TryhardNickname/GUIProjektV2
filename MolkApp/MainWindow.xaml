@@ -16,10 +16,22 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" AllowDrop="True" Drop="TextBlock_Drop" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" BorderBrush="Black" BorderThickness="1">MOLK</Label>
-
-            <Label Grid.Column="1" AllowDrop="True" Drop="TextBlock_Drop_1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="40" BorderBrush="Black" BorderThickness="1">UNMOLK</Label>
+            <Border BorderThickness="1" BorderBrush="Black" AllowDrop="True" Drop="TextBlock_Drop" Grid.Row="0">
+                <StackPanel VerticalAlignment="Center">
+                    <Image Grid.Column="0" Source="Assets/molk-logo-purple.png" Height="45"></Image>
+                    <Label HorizontalContentAlignment="Center">Drop file here</Label>
+                </StackPanel>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" AllowDrop="True" Drop="TextBlock_Drop_1" Grid.Row="0" >
+                <StackPanel VerticalAlignment="Center" >
+                    <Image Grid.Column="1" Source="Assets/unmolk-logo.png" Height="40"></Image>
+                    <Label HorizontalContentAlignment="Center">Drop file here</Label>
+                </StackPanel>
+            </Border>
         </Grid>
 
     </Grid>

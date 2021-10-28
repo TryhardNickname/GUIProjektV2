@@ -31,14 +31,12 @@
                         <TextBox Name="DestinationContentTextBox" AllowDrop="True" Drop="DestinationContentTextBox_Drop" PreviewDragOver="ContentTextBox_PreviewDragOver" Grid.Column="0" Grid.Row="0" Height="24" VerticalAlignment="Top"></TextBox>
                         <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Height="24"  Click="Destination_Content_File_Click">
                             <StackPanel Orientation="Horizontal">
-
                                 <TextBlock>Choose file to ZIP</TextBlock>
                             </StackPanel>
                         </Button>
 
                         <Button Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" Height="24" Click="Destination_Content_Folder_Click">
                             <StackPanel Orientation="Horizontal">
-
                                 <TextBlock>Choose folder to ZIP</TextBlock>
                             </StackPanel>
                         </Button>
@@ -46,7 +44,6 @@
                         <TextBox Name="DestinationZIPTextBox" AllowDrop="True" Drop="DestinationZIPTextBox_Drop" PreviewDragOver="ContentTextBox_PreviewDragOver" Grid.Column="0" Margin="0,10,0,-5" Grid.Row="1" Height="24" VerticalAlignment="Top">MolkFolder.molk</TextBox>
                         <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Height="24"  VerticalAlignment="Top" Margin="0,10,0,-5" Click="Destination_ZIP_Click">
                             <StackPanel Orientation="Horizontal">
-
                                 <TextBlock>Choose ZIP destination</TextBlock>
                             </StackPanel>
                         </Button>
