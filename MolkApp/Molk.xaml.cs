@@ -351,7 +351,7 @@ namespace MolkApp
             info.FileName = "cmd.exe";
             info.RedirectStandardInput = true;
             info.UseShellExecute = false;
-            info.Arguments = $"/c molk {DestinationZIPTextBox.Text} {DestinationContentTextBox.Text} > C:/Users/Yumey/Desktop/test.txt";
+            info.Arguments = $"/c molk \"{DestinationZIPTextBox.Text}\" \"{DestinationContentTextBox.Text}\"";
 
             process.StartInfo = info;
             process.Start();
