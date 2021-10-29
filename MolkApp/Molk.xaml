@@ -134,7 +134,7 @@
                             </Button>
                         </Grid>
                     </StackPanel>
-                    <Button Width="120" Background="White" BorderThickness="0" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="Molk_Click"
+                    <Button Width="120" Background="White" BorderThickness="0" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="Unmolk_Click"
                                 Grid.Row="2" Height="40">
                         <Image Source="Assets\unmolk-logo.png" Height="40" />
                     </Button>
